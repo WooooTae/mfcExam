@@ -14,6 +14,7 @@ using namespace std;
 #define new DEBUG_NEW
 #endif
 
+#define MAX_COUNT 100
 #pragma comment(linker,"/entry:WinMainCRTStartup /subsystem:console")
 
 // 응용 프로그램 정보에 사용되는 CAboutDlg 대화 상자입니다.
@@ -195,13 +196,13 @@ void CgPrjDlg::OnBnClickedBtnTest()
 	int nWidth = m_pDlgImage->m_image.GetWidth();
 	int nHeight = m_pDlgImage->m_image.GetHeight();
 	int nPitch = m_pDlgImage->m_image.GetPitch();
-	memset(fm, 0xff, nWidth * nHeight);
+	memset(fm, 0, nWidth * nHeight);
 
-	for (int k = 0; k < 100; k++)
+	for (int k = 0; k < 500; k++)
 	{
 		int x = rand() % nWidth;
 		int y = rand() % nHeight;
-		fm[y * nPitch + x] = 0;
+		fm[y * nPitch + x] = rand() % 0xff;
 	}
 
 	int nIndex = 0;
@@ -209,7 +210,7 @@ void CgPrjDlg::OnBnClickedBtnTest()
 	{
 		for (int i = 0; i < nWidth; i++)
 		{
-			if (fm[j * nPitch + i] == 0)
+			if (fm[j * nPitch + i] > 100)
 			{
 				if (m_pDlgImgResult->m_nDataCount < 100)
 				{

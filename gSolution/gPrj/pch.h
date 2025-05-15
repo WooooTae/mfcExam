@@ -11,4 +11,7 @@
 #include "framework.h"
 #include <afxcontrolbars.h>
 
+#define RED RGB(0xff,0,0)
+#define GREEN RGB(0,0xff,0)
+
 #endif //PCH_H
